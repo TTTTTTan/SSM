@@ -1,21 +1,59 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
 	http://www.springframework.org/schema/context 
 	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-	
+	<!-- default-dependency-check="all" 全局默认的依赖检查 ,bean自己指定的模式下可覆盖 -->
+
+	<!-- 同customerService1 -->
+	<!-- <bean id="customerService2" class="com.tkl.spring.CustomerService2" 
+		init-method="initIt" destroy-method="cleanUp">
+		<property name="message" value="i'm property message" />
+	</bean> -->
+
+	<!-- 
+	    对于Bean实现 InitializingBean，它将运行 afterPropertiesSet()在所有的 bean 属性被设置之后。
+	    对于 Bean 实现了DisposableBean，它将运行 destroy()在 Spring 容器释放该 bean 之后。
+	 -->
+	<!-- <bean id="customerService1" class="com.tkl.spring.CustomerService1">
+		<property name="message" value="I'm property message" />
+	</bean> -->
+
+	<!-- none – 没有依赖检查，这是默认的模式。 simple – 如果基本类型(int, long,double…)和集合类型(map, 
+		list..)的任何属性都没有设置，UnsatisfiedDependencyException将被抛出。 objects – 如果对象类型的任何属性都没有设置，UnsatisfiedDependencyException将被抛出。 
+		all – 如果任何类型的任何属性都没有被设置，UnsatisfiedDependencyException将被抛出。 <bean id="CustomerBean" 
+		class="com.yiibai.common.Customer" dependency-check="simple或objects或all"> -->
+
+	<!-- 类通过一个特殊的格式在外部部署细节到一个属性(properties )文件，以及访问bean的配置文件 – ${variable}. -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>config.properties</value>
+		</property>
+	</bean>
+
+	<!-- 作用域 单例 - 每个Spring IoC 容器返回一个bean实例 默认是单例 原型- 当每次请求时返回一个新的bean实例 每次返回的是新的bean 
+		<bean id="customerService" class="com.yiibai.customer.services.CustomerService" 
+		scope="prototype"/> 请求 - 返回每个HTTP请求的一个Bean实例 会话 - 返回每个HTTP会话的一个bean实例 全局会话- 
+		返回全局HTTP会话的一个bean实例 -->
+
+	<!-- 在一个大的项目结构，Spring bean配置文件位于不同的文件夹以便于维护和模块化 -->
+	<!-- <import resource="moduleA/Spring-ModuleA.xml"/> -->
+
+	<!-- 如果是在不同XML文件中的bean <ref bean="someBean"/> -->
+
 	<!-- 注解自动装配 -->
 	<context:annotation-config />
 	<bean id="AutowiredBean" class="com.tkl.spring.AutowiredBean" />
 
-	<bean id="helloBean" class="com.tkl.spring.HelloWorld" >
+	<bean id="helloBean" class="com.tkl.spring.HelloWorld">
 		<property name="name" value="TKL" />
+		<property name="value" value="${username}" />
 		<!-- 这是默认的模式，你需要通过 'ref' 属性来连接 bean -->
 		<!-- <property name="user" ref="user" /> -->
 	</bean>
-	
+
 	<!-- 按属性名称自动装配 -->
 	<!-- <bean id="helloBean" class="com.tkl.spring.HelloWorld" autowire="byName"> -->
 	<!-- 通过按属性的数据类型自动装配Bean -->

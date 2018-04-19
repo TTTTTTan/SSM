@@ -1,6 +1,7 @@
 package com.tkl.spring;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -10,8 +11,23 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class App {
 	public static void main(String[] args) {
-		
-		Spring2();
+		Spring1();
+	}
+	
+	public static void Spring4(){
+		ConfigurableApplicationContext context = 
+				new ClassPathXmlApplicationContext(new String[] {"applicationContext.xml"});
+	    	CustomerService2 cust = (CustomerService2)context.getBean("customerService2");
+	    	System.out.println(cust);
+	    	context.close();
+	}
+	
+	public static void Spring3(){
+		ConfigurableApplicationContext context = 
+				new ClassPathXmlApplicationContext(new String[] {"applicationContext.xml"});
+	    	CustomerService1 cust = (CustomerService1)context.getBean("customerService1");
+	    	System.out.println(cust);
+	    	context.close();
 	}
 	
 	public static void Spring2(){
