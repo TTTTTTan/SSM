@@ -53,5 +53,12 @@ public class HelloWorld {
 	  System.out.println("Spring Container is destroy! Customer clean up");
 	}
 	
+	public void printThrowException() {
+		throw new IllegalArgumentException();
+	}
+	
+	public void printPoint(){
+		System.out.println("测试切入点方法");
+	}
 }
 
