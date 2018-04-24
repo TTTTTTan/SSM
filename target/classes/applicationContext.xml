@@ -24,10 +24,10 @@
     ‘target’ – 定义你想拦截的bean。
     ‘interceptorNames’ – 定义要应用这个代理/目标对象的类(通知)。
 	 -->
-	<bean id="hijackAroundMethodBean" class="com.tkl.spring.HijackAroundMethod" /><!-- 环绕通知 -->
-	<bean id="hijackThrowExceptionBean" class="com.tkl.spring.HijackThrowException" /><!-- 抛出异常后通知 -->
-	<bean id="hijackAfterMethodBean" class="com.tkl.spring.HijackAfterMethod" /><!-- 之后通知 -->
-	<bean id="hijackBeforeMethodBean" class="com.tkl.spring.HijackBeforeMethod" /><!-- 之前通知 -->
+	<bean id="hijackAroundMethodBean" class="com.ssm.spring.HijackAroundMethod" /><!-- 环绕通知 -->
+	<bean id="hijackThrowExceptionBean" class="com.ssm.spring.HijackThrowException" /><!-- 抛出异常后通知 -->
+	<bean id="hijackAfterMethodBean" class="com.ssm.spring.HijackAfterMethod" /><!-- 之后通知 -->
+	<bean id="hijackBeforeMethodBean" class="com.ssm.spring.HijackBeforeMethod" /><!-- 之前通知 -->
 	<bean id="customerServiceProxy" 
                  class="org.springframework.aop.framework.ProxyFactoryBean">
 		<property name="target" ref="helloBean" />
@@ -42,18 +42,18 @@
 	</bean>
 	
 	<!-- 自动扫包 -->
-	<context:component-scan base-package="com.tkl.spring" >
+	<context:component-scan base-package="com.ssm.spring" >
 		<!-- 扫描并注册匹配定义“regex”，即使该类组件的名称未标注 @Component 
 				所有文件的名称中包含Service( *Services.*) 单词将被检测并在 Spring 容器中注册
 				type="annotation"则是忽略这些注册  -->
 		<!-- <context:include-filter type="regex" 
-                       expression="com.tkl.spring.*Service.*" /> -->
+                       expression="com.ssm.spring.*Service.*" /> -->
                        
 	</context:component-scan>
 	
 
 	<!-- 同customerService1 -->
-	<!-- <bean id="customerService2" class="com.tkl.spring.CustomerService2" 
+	<!-- <bean id="customerService2" class="com.ssm.spring.CustomerService2" 
 		init-method="initIt" destroy-method="cleanUp">
 		<property name="message" value="i'm property message" />
 	</bean> -->
@@ -62,7 +62,7 @@
 	    对于Bean实现 InitializingBean，它将运行 afterPropertiesSet()在所有的 bean 属性被设置之后。
 	    对于 Bean 实现了DisposableBean，它将运行 destroy()在 Spring 容器释放该 bean 之后。
 	 -->
-	<!-- <bean id="customerService1" class="com.tkl.spring.CustomerService1">
+	<!-- <bean id="customerService1" class="com.ssm.spring.CustomerService1">
 		<property name="message" value="I'm property message" />
 	</bean> -->
 
@@ -91,23 +91,23 @@
 
 	<!-- 注解自动装配 -->
 	<context:annotation-config />
-	<bean id="AutowiredBean" class="com.tkl.spring.AutowiredBean" />
+	<bean id="AutowiredBean" class="com.ssm.spring.AutowiredBean" />
 
-	<bean id="helloBean" class="com.tkl.spring.HelloWorld">
-		<property name="name" value="TKL" />
+	<bean id="helloBean" class="com.ssm.spring.HelloWorld">
+		<property name="name" value="ssm" />
 		<property name="value" value="${username}" />
 		<!-- 这是默认的模式，你需要通过 'ref' 属性来连接 bean -->
 		<!-- <property name="user" ref="user" /> -->
 	</bean>
 
 	<!-- 按属性名称自动装配 -->
-	<!-- <bean id="helloBean" class="com.tkl.spring.HelloWorld" autowire="byName"> -->
+	<!-- <bean id="helloBean" class="com.ssm.spring.HelloWorld" autowire="byName"> -->
 	<!-- 通过按属性的数据类型自动装配Bean -->
-	<!-- <bean id="helloBean" class="com.tkl.spring.HelloWorld" autowire="byType"> -->
+	<!-- <bean id="helloBean" class="com.ssm.spring.HelloWorld" autowire="byType"> -->
 	<!-- 通过构造函数参数的数据类型按属性自动装配Bean -->
-	<!-- <bean id="helloBean" class="com.tkl.spring.HelloWorld" autowire="constructor"> -->
-	<bean id="user" class="com.tkl.entity.User">
-		<property name="name" value="UserTkl" />
+	<!-- <bean id="helloBean" class="com.ssm.spring.HelloWorld" autowire="constructor"> -->
+	<bean id="user" class="com.ssm.entity.User">
+		<property name="name" value="Userssm" />
 	</bean>
 
 </beans>

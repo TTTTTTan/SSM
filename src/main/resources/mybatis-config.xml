@@ -92,9 +92,9 @@
 	
 	<typeAliases>
 		<!-- 类型别名是为 Java 类型设置一个短的名字。它只和 XML 配置有关，存在的意义仅在于用来减少类完全限定名的冗余 -->
-		<!-- <typeAlias alias="UserMapper" type="com.tkl.mapper.UserMapper" /> -->
+		<!-- <typeAlias alias="UserMapper" type="com.ssm.mapper.UserMapper" /> -->
 		<!-- 也可以指定一个包名，MyBatis 会在包名下面搜索需要的 Java Bean -->
-		<package name="com.tkl.entity"/>
+		<package name="com.ssm.entity"/>
 	</typeAliases>
 
 	<environments default="development">
@@ -109,8 +109,8 @@
 		</environment>
 	</environments>
 	<mappers>
-		<!-- <mapper resource="com/tkl/mapper/UserMapper.xml" /> -->
+		<!-- <mapper resource="com/ssm/mapper/UserMapper.xml" /> -->
 		<!-- 将包内的映射器接口实现全部注册为映射器 -->
-		<package name="com.tkl.mapper"/>
+		<package name="com.ssm.mapper"/>
 	</mappers>
 </configuration>
