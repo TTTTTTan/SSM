@@ -11,6 +11,7 @@ public class HelloController{
 
    @RequestMapping(method = RequestMethod.GET)
    public String printHello(ModelMap model) {
+	   //本地提交测试
       model.addAttribute("message", "Hello Spring MVC Framework!");
       return "hello";
    }
